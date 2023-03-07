@@ -25,12 +25,14 @@ function App() {
 
   const handleDeleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
+    console.log();
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <input type="text" value={newTodo} onChange={(event) => setNewTodo(event.target.value)} />
+        <button type="submit">Add To Do</button>
         <ul>
           {todos.map((todo) => (
             <li key={todo.id}>
@@ -46,7 +48,7 @@ function App() {
             </li>
           ))}
         </ul>
-        <button type="submit">Add To Do</button>
+        
       </form>
     </div>
   );
