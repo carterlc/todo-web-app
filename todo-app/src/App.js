@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import './App.css';
 
 function App() {
 
@@ -28,28 +30,37 @@ function App() {
     console.log();
   };
 
+  useEffect(() => {
+    console.log(todos)
+  },[todos]);
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={newTodo} onChange={(event) => setNewTodo(event.target.value)} />
-        <button type="submit">Add To Do</button>
-        <ul>
-          {todos.map((todo) => (
-            <li key={todo.id}>
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={() => handleToggleCompleted(todo.id)}
-              />
-              <span style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
-                {todo.text}
-              </span>
-              <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
-            </li>
-          ))}
-        </ul>
-        
-      </form>
+      <h1>Todo list</h1>
+      <div className='form-container'>
+        <div className='red-border'>
+          <form onSubmit={handleSubmit}>
+            <input type="text" value={newTodo} onChange={(event) => setNewTodo(event.target.value)} />
+            <button type="submit">Add To Do</button>
+            <ul>
+              {todos.map((todo) => (
+                <li key={todo.id}>
+                  <input
+                    type="checkbox"
+                    checked={todo.completed}
+                    onChange={() => handleToggleCompleted(todo.id)}
+                  />
+                  <span style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
+                    {todo.text}
+                  </span>
+                  <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
+                </li>
+              ))}
+            </ul>
+
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
